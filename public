@@ -42,7 +42,7 @@ local function DrawESP(plr)
     local Name = Drawing.new("Text")
     Name.Center = true
     Name.Visible = false
-    Name.Outline = false
+    Name.Outline = true
     Name.Transparency = 1
     local Box = Drawing.new("Quad")
     Box.Visible = false
