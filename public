@@ -79,7 +79,7 @@ local function DrawESP(plr)
 
                 if OnScreen and getgenv().Visibility and getgenv().nameESP then
                     Name.Position = Vector2.new(Vector.X, Vector.Y + math.clamp(Distance / 10, 10, 30) - 10)
-                    Name.Size = math.clamp(15 - Distance / 15, 15, 20)
+                    Name.Size = math.clamp(25 - Distance / 25, 25, 25)
                     if getgenv().useTeamColor then
                         Name.Color = plr.TeamColor.Color
                     else
@@ -92,7 +92,7 @@ local function DrawESP(plr)
                     Name.Visible = false 
                 end
                 
-                Name.Text = string.format("[%sm] [%s]", tostring(math.floor(Distance)), plr.Name)
+                Name.Text = string.format("[%s m] %s [%s]", tostring(math.floor(Distance)), plr.Name, plr.Character:FindFirstChild("Humanoid").Health)
                  
                 local PartCorners = GetPartCorners(plr.Character.HumanoidRootPart)
                 local VectorTR, OnScreenTR = Camera:WorldToScreenPoint(PartCorners.TR)
