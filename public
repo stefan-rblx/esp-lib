@@ -5,15 +5,15 @@ local Player = game:GetService("Players").LocalPlayer
 local Camera = game:GetService("Workspace").CurrentCamera
 local UserInputService = game:GetService("UserInputService")
 
-getgenv().useTeamColor = false
-local FontValue = 1
+getgenv().useTeamColor = true
+local FontValue = 3
 if not getgenv().Visibility then
-    getgenv().Visibility = false
+    getgenv().Visibility = true
 end
 
 if not getgenv().cham or getgenv().nameESP or getgenv().boxESP then
     getgenv().cham = false
-    getgenv().nameESP = false
+    getgenv().nameESP = true
     getgenv().boxESP = false
 end
 
