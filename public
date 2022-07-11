@@ -17,6 +17,7 @@ if not getgenv().cham or getgenv().nameESP or getgenv().boxESP then
     getgenv().nameESP = false
     getgenv().boxESP = false
     getgenv().distance = false
+    getgenv().outline = false
 end
 
 
@@ -43,7 +44,7 @@ local function DrawESP(plr)
     local Name = Drawing.new("Text")
     Name.Center = true
     Name.Visible = false
-    Name.Outline = true
+    Name.Outline = false
     Name.Transparency = 1
     local Box = Drawing.new("Quad")
     Box.Visible = false
@@ -75,6 +76,11 @@ local function DrawESP(plr)
                          Name.Text = string.format("%s \n %sM \n %s/%s",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
                     else
                         Name.Text = string.format("%s \n %s/%s",  plr.Name, plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
+                    end
+                    if getgenv().outline then 
+                        Name.Outline = true
+                    else 
+                        Name.Outline = false
                     end
                     Name.Visible = true
                     Name.Font = FontValue
