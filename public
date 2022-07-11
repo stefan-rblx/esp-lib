@@ -53,33 +53,17 @@ local function DrawESP(plr)
     Box.Color = Color3.fromRGB(255, 255, 255)
     Box.Thickness = 2
     Box.Transparency = 1
-    local highlight = Instance.new("Highlight")
-    
-    highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-    highlight.Enabled = getgenv().cham
+
+
     local function Update()
         local c
         c = game:GetService("RunService").RenderStepped:Connect(function()
             if plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Humanoid") ~= nil and plr.Character:FindFirstChild("HumanoidRootPart") ~= nil and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 and plr.Character:FindFirstChild("Head") ~= nil then
                 local Distance = (Camera.CFrame.Position - plr.Character.HumanoidRootPart.Position).Magnitude
-                local Vector, OnScreen = Camera:WorldToScreenPoint(plr.Character.Head.Position)
-
-
-
-                highlight.Parent = plr.Character
-                if getgenv().Visibility then
-                    highlight.Enabled = getgenv().cham
-                end
-                if getgenv().useTeamColor then
-                    highlight.FillColor = plr.TeamColor.Color
-                else
-                    highlight.FillColor = Color3.fromHSV(math.clamp(Distance / 5, 0, 125) / 255, 0.75, 1)
-                end
-
-
+                local Vector, OnScreen = Camera:WorldToScreenPoint(plr.Character["LowerTorso"].Position)
 
                 if OnScreen and getgenv().Visibility and getgenv().nameESP then
-                    Name.Position = Vector2.new(Vector.X, Vector.Y + math.clamp(Distance / 10, 10, 30) - 10)
+                    Name.Position = Vector2.new(Vector.X, Vector.Y + math.clamp(Distance / 10, 10, 10) - -40)
                     Name.Size = 17.5
                     if getgenv().useTeamColor then
                         Name.Color = plr.TeamColor.Color
@@ -93,7 +77,7 @@ local function DrawESP(plr)
                     Name.Visible = false 
                 end
                 
-                Name.Text = string.format("[%s m] %s [%s / %s]", tostring(math.floor(Distance)), plr.Name, plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
+                Name.Text = string.format("%s \n %sM \n %s/%s",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
                  
                 local PartCorners = GetPartCorners(plr.Character.HumanoidRootPart)
                 local VectorTR, OnScreenTR = Camera:WorldToScreenPoint(PartCorners.TR)
@@ -121,7 +105,6 @@ local function DrawESP(plr)
             else
                 Box.Visible = false
                 Name.Visible = false
-                highlight.Enabled = false
                 if game.Players:FindFirstChild(plr.Name) == nil then
                     c:Disconnect()
                 end
