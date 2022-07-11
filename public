@@ -16,6 +16,7 @@ if not getgenv().cham or getgenv().nameESP or getgenv().boxESP then
     getgenv().cham = false
     getgenv().nameESP = false
     getgenv().boxESP = false
+    getgenv().distance = false
 end
 
 
@@ -60,7 +61,7 @@ local function DrawESP(plr)
         c = game:GetService("RunService").RenderStepped:Connect(function()
             if plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Humanoid") ~= nil and plr.Character:FindFirstChild("HumanoidRootPart") ~= nil and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 and plr.Character:FindFirstChild("Head") ~= nil then
                 local Distance = (Camera.CFrame.Position - plr.Character.HumanoidRootPart.Position).Magnitude
-                local Vector, OnScreen = Camera:WorldToScreenPoint(plr.Character["HumanoidRootPart"].Position)
+                local Vector, OnScreen = Camera:WorldToScreenPoint(plr.Character["LowerTorso"].Position)
 
                 if OnScreen and getgenv().Visibility and getgenv().nameESP then
                     Name.Position = Vector2.new(Vector.X, Vector.Y + math.clamp(Distance / 10, 10, 10) - -40)
@@ -70,15 +71,18 @@ local function DrawESP(plr)
                     else
                         Name.Color = Color3.fromRGB(255,255,255)
                     end
+                    if getgenv().distance then
+                         Name.Text = string.format("%s \n %sM \n %s/%s",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
+                    else
+                        Name.Text = string.format("%s \n \n %s/%s",  plr.Name,  plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
+                    end
                     Name.Visible = true
                     Name.Font = FontValue
                     Name.Transparency = math.clamp((500 - Distance) / 200, 0.2, 1)
                 else
                     Name.Visible = false 
                 end
-                
-                Name.Text = string.format("%s \n %sM \n %s/%s",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
-                 
+
                 local PartCorners = GetPartCorners(plr.Character.HumanoidRootPart)
                 local VectorTR, OnScreenTR = Camera:WorldToScreenPoint(PartCorners.TR)
                 local VectorBR, OnScreenBR = Camera:WorldToScreenPoint(PartCorners.BR)
