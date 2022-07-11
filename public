@@ -61,7 +61,7 @@ local function DrawESP(plr)
         c = game:GetService("RunService").RenderStepped:Connect(function()
             if plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Humanoid") ~= nil and plr.Character:FindFirstChild("HumanoidRootPart") ~= nil and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 and plr.Character:FindFirstChild("Head") ~= nil then
                 local Distance = (Camera.CFrame.Position - plr.Character.HumanoidRootPart.Position).Magnitude
-                local Vector, OnScreen = Camera:WorldToScreenPoint(plr.Character["LowerTorso"].Position)
+                local Vector, OnScreen = Camera:WorldToScreenPoint(plr.Character["HumanoidRootPart"].Position)
 
                 if OnScreen and getgenv().Visibility and getgenv().nameESP then
                     Name.Position = Vector2.new(Vector.X, Vector.Y + math.clamp(Distance / 10, 10, 10) - -40)
