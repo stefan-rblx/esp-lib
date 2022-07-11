@@ -73,7 +73,7 @@ local function DrawESP(plr)
                         Name.Color = Color3.fromRGB(255,255,255)
                     end
                     if getgenv().distance then
-                         Name.Text = string.format("[%s | %sM] \n [%s/%s]",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
+                         Name.Text = string.format("[%s | %s] \n [%s|%s]",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
                     else
                         Name.Text = string.format("[%s | %s/%s]",  plr.Name, plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
                     end
