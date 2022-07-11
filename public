@@ -74,7 +74,7 @@ local function DrawESP(plr)
                     if getgenv().distance then
                          Name.Text = string.format("%s \n %sM \n %s/%s",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
                     else
-                        Name.Text = string.format("%s \n \n %s/%s",  plr.Name,  plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
+                        Name.Text = string.format("%s \n %s/%s",  plr.Name, plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
                     end
                     Name.Visible = true
                     Name.Font = FontValue
