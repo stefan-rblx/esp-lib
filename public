@@ -14,7 +14,7 @@ end
 
 if not getgenv().cham or getgenv().nameESP or getgenv().boxESP then
     getgenv().cham = false
-    getgenv().nameESP = true
+    getgenv().nameESP = false
     getgenv().boxESP = false
     getgenv().distance = false
     getgenv().outline = false
@@ -73,9 +73,9 @@ local function DrawESP(plr)
                         Name.Color = Color3.fromRGB(255,255,255)
                     end
                     if getgenv().distance then
-                         Name.Text = string.format("[%s ︱ %sM] \n [%s/%s]",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
+                         Name.Text = string.format("[%s I %sM] \n [%s/%s]",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
                     else
-                        Name.Text = string.format("[%s ︱ %s/%s]",  plr.Name, plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
+                        Name.Text = string.format("[%s I %s/%s]",  plr.Name, plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
                     end
                     if getgenv().outline then 
                         Name.Outline = true
