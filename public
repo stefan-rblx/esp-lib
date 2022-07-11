@@ -14,7 +14,7 @@ end
 
 if not getgenv().cham or getgenv().nameESP or getgenv().boxESP then
     getgenv().cham = false
-    getgenv().nameESP = false
+    getgenv().nameESP = true
     getgenv().boxESP = false
     getgenv().distance = false
     getgenv().outline = false
@@ -62,10 +62,10 @@ local function DrawESP(plr)
         c = game:GetService("RunService").RenderStepped:Connect(function()
             if plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Humanoid") ~= nil and plr.Character:FindFirstChild("HumanoidRootPart") ~= nil and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 and plr.Character:FindFirstChild("Head") ~= nil then
                 local Distance = (Camera.CFrame.Position - plr.Character.HumanoidRootPart.Position).Magnitude
-                local Vector, OnScreen = Camera:WorldToScreenPoint(plr.Character["HumanoidRootPart"].Position)
+                local Vector, OnScreen = Camera:WorldToScreenPoint(plr.Character["Head"].Position)
 
                 if OnScreen and getgenv().Visibility and getgenv().nameESP then
-                    Name.Position = Vector2.new(Vector.X, Vector.Y + math.clamp(Distance / 210, 175, 175) - -20)
+                    Name.Position = Vector2.new(Vector.X, Vector.Y + math.clamp(Distance / 10, 10, 10) - 10)
                     Name.Size = 17.5
                     if getgenv().useTeamColor then
                         Name.Color = plr.TeamColor.Color
@@ -73,9 +73,9 @@ local function DrawESP(plr)
                         Name.Color = Color3.fromRGB(255,255,255)
                     end
                     if getgenv().distance then
-                         Name.Text = string.format("%s \n %sM \n %s/%s",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
+                         Name.Text = string.format("[%s ︱ %sM] \n [%s/%s]",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
                     else
-                        Name.Text = string.format("%s \n %s/%s",  plr.Name, plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
+                        Name.Text = string.format("[%s ︱ %s/%s]",  plr.Name, plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
                     end
                     if getgenv().outline then 
                         Name.Outline = true
