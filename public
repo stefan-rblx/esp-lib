@@ -80,9 +80,8 @@ local function DrawESP(plr)
                     end
                     if getgenv().health then
                         Name.Text = string.format("[%s | %s|%s]",  plr.Name, plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
-                    elseif getgenv().distance == true then
-                            Name.Text = string.format("[%s | %s | %s|%s ]",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
-                        end
+                    else
+                        Name.Text = string.format("[%s]",  plr.Name)
                     end
                     if getgenv().outline then 
                         Name.Outline = true
