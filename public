@@ -18,7 +18,6 @@ if not getgenv().cham or getgenv().nameESP or getgenv().boxESP then
     getgenv().boxESP = false
     getgenv().distance = false
     getgenv().outline = false
-    getgenv().fontchange = false
 end
 
 
@@ -83,13 +82,9 @@ local function DrawESP(plr)
                 else 
                     Name.Outline = false
                 end
-                if getgenv().fontchange then 
-                    local FontValue1 = Value
-                else 
-                    local FontValue1 = 1
-                end
+    
                     Name.Visible = true
-                    Name.Font = FontValue1
+                    Name.Font = FontValue
                     Name.Transparency = math.clamp((500 - Distance) / 200, 0.2, 1)
                 else
                     Name.Visible = false 
