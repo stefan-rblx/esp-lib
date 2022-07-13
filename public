@@ -7,7 +7,7 @@ local Camera = game:GetService("Workspace").CurrentCamera
 local UserInputService = game:GetService("UserInputService")
 
 getgenv().useTeamColor = false
-local FontValue = 3
+local FontValue = 1
 if not getgenv().Visibility then
     getgenv().Visibility = true
 end
@@ -18,6 +18,7 @@ if not getgenv().cham or getgenv().nameESP or getgenv().boxESP then
     getgenv().boxESP = false
     getgenv().distance = false
     getgenv().outline = false
+    getgenv().fontchange = false
 end
 
 
@@ -67,23 +68,28 @@ local function DrawESP(plr)
                 if OnScreen and getgenv().Visibility and getgenv().nameESP then
                     Name.Position = Vector2.new(Vector.X, Vector.Y + math.clamp(Distance / 10, 10, 10) - 10)
                     Name.Size = 17.5
-                    if getgenv().useTeamColor then
-                        Name.Color = plr.TeamColor.Color
-                    else
-                        Name.Color = Color3.fromRGB(255,255,255)
-                    end
-                    if getgenv().distance then
-                        Name.Text = string.format("[%s | %s] \n [%s|%s]",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
-                   else
-                       Name.Text = string.format("[%s | %s|%s]",  plr.Name, plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
-                   end
-                    if getgenv().outline then 
-                        Name.Outline = true
-                    else 
-                        Name.Outline = false
-                    end
+                if getgenv().useTeamColor then
+                    Name.Color = plr.TeamColor.Color
+                else
+                    Name.Color = Color3.fromRGB(255,255,255)
+                end
+                if getgenv().distance then
+                    Name.Text = string.format("[%s | %s] \n [%s|%s]",  plr.Name, tostring(math.floor(Distance)), plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
+                else
+                    Name.Text = string.format("[%s | %s|%s]",  plr.Name, plr.Character:FindFirstChild("Humanoid").Health, plr.Character:FindFirstChild("Humanoid").MaxHealth)
+                end
+                if getgenv().outline then 
+                    Name.Outline = true
+                else 
+                    Name.Outline = false
+                end
+                if getgenv().fontchange then 
+                    local FontValue1 = Value
+                else 
+                    local FontValue1 = 1
+                end
                     Name.Visible = true
-                    Name.Font = FontValue
+                    Name.Font = FontValue1
                     Name.Transparency = math.clamp((500 - Distance) / 200, 0.2, 1)
                 else
                     Name.Visible = false 
